@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>API Data Display</title>
+</head>
+<body>
+  <div class="container">
+    <h1>API Data Display</h1>
+
+    <h2>Dog Facts</h2>
+    <ul id="dog-facts-list"></ul>
+  </div>
+
+  <script>
+    async function fetchDogFacts() {
+      try {
+        const response = await fetch('https://some-dog-api.com/facts');
+        const data = await response.json();
+
+        const dogFactsList = document.getElementById('dog-facts-list');
+        data.facts.map(fact => {
+          const listItem = document.createElement('li');
+          listItem.textContent = fact;
+          dogFactsList.appendChild(listItem);
+        });
+      } catch (error) {
+        console.error('Error :', error);
+      }
+    }
+
+    fetchDogFacts();
+  </script>
+</body>
+</html>
